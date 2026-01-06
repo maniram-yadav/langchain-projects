@@ -1,0 +1,1 @@
+LangChain uses several document loaders for web pages, primarily the WebBaseLoader for static content, and others like SeleniumURLLoader or FireCrawlLoader for dynamic or complex sites. These loaders convert web content into a standardized Document format for use in applications like Retrieval Augmented Generation (RAG). 

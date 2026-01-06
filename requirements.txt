@@ -2,3 +2,16 @@ langchain
 python-dotenv
 ipykernel
 langsmith
+langchain-community
+beautifulsoup4
+pypdf
+arxiv
+pymupdf
+wikipedia
+langchain-text-splitters
+langchain-openai
+chromadb
+# langchain_huggingface
+# sentence-transformers
+faiss-cpu
+langchain_chroma
