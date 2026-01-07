@@ -17,5 +17,5 @@ faiss-cpu
 langchain_chroma
 langchain-core
 pillow
-
+streamlit
 
