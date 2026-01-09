@@ -8,3 +8,5 @@ __pycache__/
 .vscode/
 faiss_index/
 chroma_db/
+debugging/__pycache__/
+debugging/.langgraph_api/
