@@ -4,7 +4,7 @@ from src.langgraphagenticai.ui.uiconfigfile import Config
 
 class LoadStreamlitUI:
     def __init__(self):
-        print("Hello UI")
+        # print("Hello UI")
         self.config = Config()
         
         print(self.config)
@@ -37,6 +37,13 @@ class LoadStreamlitUI:
             
             # Usecase selection
             self.user_controls["selected_usecase"]=st.selectbox("Select Usecases",usecase_options)
+
+            if self.user_controls["selected_usecase"]=="Chatbot with Tool":
+                os.environ["TAVILY_API_KEY"] = self.user_controls["TAVILY_API_KEY"] = st.session_state["TAVILY_API_KEY"] = st.text_input("TAVILY API KEY",
+                                                                                        type="password")
+                            # Validate API key
+                if not self.user_controls["TAVILY_API_KEY"]:
+                    st.warning("⚠️ Please enter your TAVILY_API_KEY key to proceed. Don't have? refer : https://app.tavily.com/home")
 
         return self.user_controls
 
