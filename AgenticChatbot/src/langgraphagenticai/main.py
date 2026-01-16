@@ -42,8 +42,8 @@ def load_langgraph_agenticai_app():
                 graph = graph_builder.setup_graph(usecase)
                 DisplayResultStreamlit(usecase,graph,user_message).display_result_on_ui()
             except Exception as ex:
-                st.error("Eror : Graph set up failed . {e}")
+                st.error(f"Error : Graph set up failed . {ex}")
                 return 
                 
         except Exception as e:
-            st.error("Eror : Graph  failed . {e}")
+            st.error(f"Error : Graph  failed . {e}")
