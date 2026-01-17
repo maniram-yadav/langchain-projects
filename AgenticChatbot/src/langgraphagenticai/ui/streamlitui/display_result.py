@@ -1,7 +1,8 @@
 import streamlit as st
 from langchain_core.messages import HumanMessage,AIMessage,ToolMessage
 import json
-
+import os
+from PIL import Image
 
 class DisplayResultStreamlit:
     
@@ -14,6 +15,7 @@ class DisplayResultStreamlit:
         usecase= self.usecase
         graph = self.graph
         user_message = self.user_message
+        print("Inside display_result_on_ui UserMessage : "+user_message)
         if usecase =="Basic Chatbot":
                 for event in graph.stream({'messages':("user",user_message)}):
                     print(event.values())
@@ -92,5 +94,35 @@ class DisplayResultStreamlit:
                         file_name=POLITICS_NEWS_PATH,
                         mime="text/markdown"
                     )
-                    
+
                 st.success(f"✅ Summary saved to {POLITICS_NEWS_PATH}")
+
+        elif usecase=="Image Generation":
+             # Prepare state and invoke the graph
+            print("Image Generation")
+            initial_state = {"messages": [user_message]}
+            res = graph.invoke(initial_state)
+            for message in res['messages']:
+                if type(message) == HumanMessage:
+                    with st.chat_message("user"):
+                        st.write(message.content)
+                elif type(message)==ToolMessage:
+                    with st.chat_message("ai"):
+                        st.write("Tool Call Start")
+                        st.write(message.content)
+                        st.write("Tool Call End")
+                elif type(message)==AIMessage and message.content:
+                    with st.chat_message("assistant"):
+                        st.write(message.content)
+
+            image_path = f"./AIImages/ai_image_1.jpg"                        
+            # Check if the file exists
+            if os.path.isfile(image_path):
+                
+                image = Image.open(image_path)
+                # Display the image with st.image()
+                st.image(image, caption='Image Found', use_column_width=True)
+            else:
+                # Display a message if the file is not found
+                st.warning(f'The file was not found at: {image_path}')
+

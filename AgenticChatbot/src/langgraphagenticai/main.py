@@ -40,9 +40,12 @@ def load_langgraph_agenticai_app():
             if not usecase:
                 st.error("Errro : No use case selected")
                 return
+            image_client = None
+            if usecase=="Image Generation":
+                image_client = obj_llm_config.get_image_model()
 
             # Graph builder
-            graph_builder=GraphBuilder(model)
+            graph_builder=GraphBuilder(model,image_client=image_client)
             try:
                 graph = graph_builder.setup_graph(usecase)
                 DisplayResultStreamlit(usecase,graph,user_message).display_result_on_ui()

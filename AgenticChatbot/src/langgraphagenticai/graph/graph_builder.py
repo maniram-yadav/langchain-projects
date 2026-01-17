@@ -9,15 +9,17 @@ from src.langgraphagenticai.tools.search_tool import get_tools,create_tool_node
 from src.langgraphagenticai.nodes.chatbot_with_tool_node import ChatbotWithToolNode
 from src.langgraphagenticai.nodes.ai_news_node import AINewsNode
 from src.langgraphagenticai.nodes.politics_news_node import PoliticsNewsNode
+from src.langgraphagenticai.nodes.ai_image_gen_node import AIImageNode
 
 
 
 
 class GraphBuilder:
 
-    def __init__(self,model):
+    def __init__(self,model,image_client=None):
         self.llm=model
         self.graph_builder=StateGraph(State)
+        self.image_client=image_client
 
     def basic_chatbot_build_graph(self):
         """
@@ -89,6 +91,21 @@ class GraphBuilder:
         self.graph_builder.add_edge("summarize_news", "save_result")
         self.graph_builder.add_edge("save_result", END)
 
+    def generate_image_build_graph(self):
+       
+        # Initialize the AIImageNode
+        aiimage_news_node = AIImageNode(self.llm,self.image_client)
+
+        self.graph_builder.add_node("enhance_prompt", aiimage_news_node.enhance_prompt)
+        self.graph_builder.add_node("generate_image", aiimage_news_node.generate_image)
+        self.graph_builder.add_node("save_image", aiimage_news_node.save_image)
+
+        self.graph_builder.set_entry_point("enhance_prompt")
+        self.graph_builder.add_edge("enhance_prompt", "generate_image")
+        self.graph_builder.add_edge("generate_image", "save_image")
+        self.graph_builder.add_edge("save_image", END)
+
+
 
     def setup_graph(self,usecase : str):
         """
@@ -102,5 +119,8 @@ class GraphBuilder:
             self.ai_news_build_graph()
         if usecase=="Politics News":
             self.politics_news_build_graph()
+        if usecase=="Image Generation":
+            self.generate_image_build_graph()
+
         graph = self.graph_builder.compile()
         return graph
