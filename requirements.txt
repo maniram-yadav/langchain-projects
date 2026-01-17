@@ -26,3 +26,5 @@ langserve
 sse_starlette
 transformers
 langgraph-cli[inmem]
+tavily
+

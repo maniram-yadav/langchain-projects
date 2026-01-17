@@ -1,0 +1,10 @@
+# Daily Politics News Summary
+
+### 2026‑01‑17  
+- [India evaluates future of Iranian port investment amid US sanctions; Trump threatens tariffs if countries fail to support US control of Greenland](https://www.globalvillagespace.com/trump-says-he-may-punish-countries-with-tariffs-if-they-dont-back-the-us-controlling-greenland/)  
+- [Congress criticises Modi over US‑Pakistan joint drill “Inspired Gambit‑2026”, calling it a blow to self‑proclaimed Vishwaguru diplomacy](https://www.thehindu.com/news/national/blow-to-self-proclaimed-vishwagurus-self-boastful-diplomacy-congress-on-us-pakistan-military-exercise/article70517812.ece)  
+- [Economic Times reports Congress complaint over US‑Pakistan joint exercise, labeling it a blow to Vishwaguru diplomacy](https://m.economictimes.com/news/politics-and-nation/blow-to-self-proclaimed-vishwagurus-self-boastful-diplomacy-congress-on-us-pak-military-exercise/articleshow/126604864.cms)  
+- [Mathrubhumi article details Jairam Ramesh’s criticism of central government for US‑Pakistan drill and Trump’s claim of averting India‑Pakistan war](https://english.mathrubhumi.com/news/india/another-blow-to-self-proclaimed-vishwaguru-congress-slams-modi-over-us-pak-military-drill-bwdbh9au)  
+- [Times of India reports Saudi Arabia fines and deports self‑employed expats; mentions US sanctions on Iran](https://timesofindia.indiatimes.com/world/middle-east/saudi-arabia-self-employed-expats-could-face-50000-riyal-fine-jail-and-deportation/articleshow/126607449.cms)  
+- [The News Mill covers Jairam Ramesh’s attack on centre over US‑Pakistan joint drill and Trump’s war‑stopping claim](https://thenewsmill.com/2026/01/another-blow-to-self-proclaimed-vishwagurus-self-boastful-diplomacy-jairam-ramesh-targets-centre-over-us-pakistan-joint-military-drill/)  
+- [BBC news lists UK political headlines including Trump tariffs on Greenland and other political stories](https://www.bbc.com/news/articles/cjw1709n20qo)

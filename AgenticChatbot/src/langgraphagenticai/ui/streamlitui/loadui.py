@@ -4,17 +4,29 @@ from src.langgraphagenticai.ui.uiconfigfile import Config
 
 class LoadStreamlitUI:
     def __init__(self):
-        # print("Hello UI")
         self.config = Config()
-        
-        print(self.config)
-        print(self.config.get_page_title())
         self.user_controls={}
 
+    
+    def initialize_session(self):
+        return {
+        "current_step": "requirements",
+        "requirements": "",
+        "user_stories": "",
+        "po_feedback": "",
+        "generated_code": "",
+        "review_feedback": "",
+        "decision": None
+    }
+  
+
     def load_streamlit_ui(self):
-        print(self.config)
+        
         st.set_page_config(page_title=self.config.get_page_title(),layout="wide")
-        st.header(""+self.config.get_page_title())
+        st.header(self.config.get_page_title())
+        st.session_state.timeframe = ''
+        st.session_state.IsFetchButtonClicked = False
+        st.session_state.IsSDLC = False
 
         with st.sidebar:
             # Get options from config
@@ -38,7 +50,7 @@ class LoadStreamlitUI:
             # Usecase selection
             self.user_controls["selected_usecase"]=st.selectbox("Select Usecases",usecase_options)
 
-            if self.user_controls["selected_usecase"]=="Chatbot with Tool" or self.user_controls["selected_usecase"] =="AI News" :
+            if self.user_controls["selected_usecase"]=="Chatbot with Tool" or self.user_controls["selected_usecase"] =="AI News" or  self.user_controls["selected_usecase"] == "Politics News":
 
                 os.environ["TAVILY_API_KEY"] = self.user_controls["TAVILY_API_KEY"] = st.session_state["TAVILY_API_KEY"] = st.text_input("TAVILY API KEY",
                                                                                         type="password")
@@ -59,8 +71,21 @@ class LoadStreamlitUI:
                         st.session_state.timeframe = time_frame
                     else :
                         st.session_state.IsFetchButtonClicked = False
-                # if "state" not in st.session_state:
-                #     st.session_state.state = self.initialize_session()
+                elif self.user_controls['selected_usecase']=="Politics News":
+                    st.subheader("Politics News Explorer")
+
+                    with st.sidebar:
+                        time_frame = st.selectbox("📅 Select Time Frame",
+                            ["Daily", "Weekly", "Monthly"],
+                            index=0)
+                    
+                    if st.button("🔍 Fetch Latest Politics News", use_container_width=True):
+                        st.session_state.IsFetchButtonClicked = True
+                        st.session_state.timeframe = time_frame
+                    else :
+                        st.session_state.IsFetchButtonClicked = False
+                if "state" not in st.session_state:
+                    st.session_state.state = self.initialize_session()
             
         return self.user_controls
 
