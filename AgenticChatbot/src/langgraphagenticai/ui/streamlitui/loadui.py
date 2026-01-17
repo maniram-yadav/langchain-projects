@@ -37,7 +37,7 @@ class LoadStreamlitUI:
             # LLM selections
             self.user_controls["selected_llm"] = st.selectbox("Select LLM",llm_options)
 
-            if self.user_controls["selected_llm"] == 'Groq':
+            if self.user_controls["selected_llm"] == 'Groq' or self.user_controls["selected_llm"] == 'OpenAI':
                 #Model selection
                 model_options=self.config.get_groq_model_options()
                 self.user_controls["selected_groq_model"]=st.selectbox("Select Model",model_options)

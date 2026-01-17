@@ -1,6 +1,7 @@
 import streamlit as st
 from src.langgraphagenticai.ui.streamlitui.loadui import LoadStreamlitUI
 from src.langgraphagenticai.LLM.groqllm import GroqLLM
+from src.langgraphagenticai.LLM.llm import get_AI_Model
 from src.langgraphagenticai.graph.graph_builder import GraphBuilder
 from src.langgraphagenticai.ui.streamlitui.display_result import DisplayResultStreamlit
 
@@ -27,7 +28,8 @@ def load_langgraph_agenticai_app():
     if user_message:
         try:
             # Configure the llm's
-            obj_llm_config=GroqLLM(user_control_input=user_input)
+            # obj_llm_config=GroqLLM(user_control_input=user_input)
+            obj_llm_config = get_AI_Model(user_input)
             model=obj_llm_config.get_llm_model()
 
             if not model:

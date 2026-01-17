@@ -1,9 +1,9 @@
 import os
 import streamlit as st
-from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 from .llm_model import  LLMModel
 
-class GroqLLM(LLMModel):
+class OpenAILLM(LLMModel):
     def __init__(self,user_control_input):
         self.user_control_input = user_control_input
 
@@ -13,7 +13,7 @@ class GroqLLM(LLMModel):
             selected_groq_model = self.user_control_input["selected_groq_model"]
             if groq_api_key=='' and os.environ["GROQ_API_KEY"]=='':
                 st.error("Please enter teh Groq API Key")
-            llm = ChatGroq(api_key=groq_api_key,model=selected_groq_model)
+            llm = ChatOpenAI(api_key=groq_api_key,model=selected_groq_model)
 
         except Exception as e:
             raise ValueError(f"Error occured with Exception :  {e}")

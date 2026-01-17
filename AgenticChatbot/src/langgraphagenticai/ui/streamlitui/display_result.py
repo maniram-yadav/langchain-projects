@@ -92,4 +92,5 @@ class DisplayResultStreamlit:
                         file_name=POLITICS_NEWS_PATH,
                         mime="text/markdown"
                     )
+                    
                 st.success(f"✅ Summary saved to {POLITICS_NEWS_PATH}")
