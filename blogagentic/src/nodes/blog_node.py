@@ -1,4 +1,5 @@
 from src.states.blog_state import BlogState
+from typing import TypedDict
 
 class BlogNode:
     """
@@ -21,8 +22,10 @@ class BlogNode:
                  """
             
             system_message = prompt.format(topic=state["topic"])
-            response = self.llm.invoke(system_message)
-            return {"blog":{"title":response.content}}
+            llm_with_output = self.llm.with_structured_output(Title)
+            response = llm_with_output.invoke(system_message)
+            print(response)
+            return {"blog":{"title":response['title']}}
         
     def content_generation(self,state:BlogState):
 
@@ -31,5 +34,13 @@ class BlogNode:
                 Generate a detailed blog content with detailed breakdown for the {topic}
                """
             system_message = system_prompt.format(topic=state["topic"])
-            response = self.llm.invoke(system_message)
-            return {"blog" : {"title": state['blog']['title'], "content":response.content}}
+            llm_with_output = self.llm.with_structured_output(Content)
+            response = llm_with_output.invoke(system_message)
+            print(response)
+            return {"blog" : {"title": state['blog']['title'], "content":response['content']}}
+        
+class Title(TypedDict):
+    title:str
+
+class Content(TypedDict):
+    content:str
