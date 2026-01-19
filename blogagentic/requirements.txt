@@ -1,0 +1,13 @@
+langchain
+langgraph
+python-dotenv
+langchain_community
+langchain_openai
+langchain_core
+langchain_groq
+fastapi
+ipykernel
+uvicorn
+watchdon
+tavily
+

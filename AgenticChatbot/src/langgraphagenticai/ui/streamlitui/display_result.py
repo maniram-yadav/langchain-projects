@@ -121,7 +121,7 @@ class DisplayResultStreamlit:
                 
                 image = Image.open(image_path)
                 # Display the image with st.image()
-                st.image(image, caption='Image Found', use_column_width=True)
+                st.image(image, caption='Image Found',width=200, use_column_width=True)
             else:
                 # Display a message if the file is not found
                 st.warning(f'The file was not found at: {image_path}')
