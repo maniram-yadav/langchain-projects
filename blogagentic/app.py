@@ -19,6 +19,7 @@ os.environ['LANGCHAIN_PROJECT']="Blog App"
 async def create_blogs(request:Request):
     data =await request.json()
     topic = data.get("topic","")
+    language = data.get("language","")
 
     ## get the llm object
     groqllm = GroqLLM()
@@ -26,7 +27,10 @@ async def create_blogs(request:Request):
 
     graph_builder = GraphBuilder(llm)
     state = {}
-    if topic :
+    if topic and language:
+        graph = graph_builder.setup_graph(usecase="language")
+        state = graph.invoke({"topic":topic,"current_language":language})
+    elif topic :
         graph = graph_builder.setup_graph(usecase="topic")
         state = graph.invoke({"topic":topic})
     return {"data":state }
